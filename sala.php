@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
+    <img src="./img/Dreymoor.jpg" alt="img" class="logo">
 </head>
 <body>
     <header>
@@ -13,57 +14,85 @@
 
     </header>
 
-        <form action="" method="post">
-            <select name="sala" id="sala" onchange="atualizarMaxParticipantes()">
-                <option value="0">Selecione uma sala</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-            </select>
+        <form action="" method="post" class="formulario">
+            <div class="opcsala">
+                <select name="sala" id="sala" onchange="atualizarMaxParticipantes()">
+                    <option value="0">Selecione uma sala</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
             <br>
-            <label for="participantes">Quantidade de participantes</label>
-            <input type="number" name="participantes" id="participantes" min="1" max="6" required>
+            <div class="participantes">
+                <label for="participantes">Quantidade de participantes</label>
+                <input type="number" name="participantes" id="participantes" min="1" max="6" required>
+            </div>
+            <br>
+            <div class="nome">
+                <label for="name">nome</label>
+                <input type="text" name="name" id="name" required>
+            </div>
+            <br>
+            <div class="area">
+                <label for="area">área</label>
+                <select name="area" id="area">
+                    <option value="logistica">logistica</option>
+                    <option value="Comercial">Comercial</option>
+                    <option value="Faturamento">Faturamento</option>
+                    <option value="Financeiro">Financeiro</option>
+                    <option value="RH">RH</option>
+                    <option value="TI">TI</option>
+                    <option value="Diretoria">Diretoria</option>
+                </select>
+            </div>
+            <br>
+            
+            <div class="data">
+
+                <label for="data">dia</label>
+                <input type="date" name="data" id="inicio" min="2025-01-01" max="2025-12-31" required>
+
+            </div>
 
             <br>
-            <label for="name">nome</label>
-            <input type="text" name="name" id="name" required>
-            <br>
-            <label for="area">área</label>
-            <select name="area" id="area">
-                <option value="logistica">logistica</option>
-                <option value="Comercial">Comercial</option>
-                <option value="Faturamento">Faturamento</option>
-                <option value="Financeiro">Financeiro</option>
-                <option value="RH">RH</option>
-                <option value="TI">TI</option>
-                <option value="Diretoria">Diretoria</option>
-            </select>
-            <br>
-        
             
-            <label for="data">dia</label>
-            <input type="date" name="data" id="inicio" min="2025-01-01" max="2025-12-31" required>
+            <div class="horario">
+                <label for="horainicio">inicio</label>
+                <input type="time" name="horainicio" id="horainicio" min="08:00" max="18:00" onkeydown="return false;" required>
+                <label for="horafim">fim</label> 
+                <input type="time" name="horafim" id="horafim" min="08:00" max="18:00" onkeydown="return false;" required>
+            </div>
+
             <br>
-            <label for="horainicio">inicio</label>
-            <input type="time" name="horainicio" id="horainicio" min="08:00" max="18:00" onkeydown="return false;" required>
-            <label for="horafim">fim</label> 
-            <input type="time" name="horafim" id="horafim" min="08:00" max="18:00" onkeydown="return false;" required>
-            
+
+            <div class="cafe">
+                <label for="cafe">Café</label>
+                <label for="cafesim">Sim</label>
+                <input type="radio" name="cafe" value="sim" id="cafesim" required>
+                <label for="cafenão">Não</label>
+                <input type="radio" name="cafe" value="não" id="cafenao" required>
+            </div>
+
             <br>
-            <label for="cafe">Café</label>
-            <label for="cafesim">Sim</label>
-            <input type="radio" name="cafe" value="sim" id="cafesim" required>
-            <label for="cafenão">Não</label>
-            <input type="radio" name="cafe" value="não" id="cafenao" required>
+
+            <div class="link">
+                <label for="link">link da reunião</label>
+                <input type="link" name="link" id="link">
+            </div>
+
             <br>
-            <label for="link">link da reunião</label>
-            <input type="link" name="link" id="link">
-            <br>
-            <label for="description">Descrição</label>
-            <input type="text" name="description" id="description">
+                
+            <div class="descricao">
+                <label for="description">Descrição</label>
+                <input type="text" name="description" id="description">
+            </div>
+
             <br>
             
-            
-            <button type="submit">enviar</button>
+            <div class="btn">
+                <button type="submit">enviar</button>
+            </div>
+                
         </form>
 
        
