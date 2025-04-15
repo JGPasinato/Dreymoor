@@ -55,7 +55,7 @@
             <input type="radio" name="cafe" value="não" id="cafenao" required>
             <br>
             <label for="link">link da reunião</label>
-            <input type="text" name="link" id="link">
+            <input type="link" name="link" id="link">
             <br>
             <label for="description">Descrição</label>
             <input type="text" name="description" id="description">
@@ -155,7 +155,7 @@
                     echo "<td>" . $row['sala'] . "</td>";
                     echo "<td>" . $row['participantes'] . "</td>";
                     echo "<td>" . $row['cafe'] . "</td>";
-                    echo "<td>" . $row['link'] . "</td>";
+                    echo "<td><a href='" . $row['link'] . "' target='_blank'>🔗</a></td>";
                     echo "<td>" . $row['descricao'] . "</td>";
                     echo "<td>
                             <form method='post'>
