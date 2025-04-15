@@ -72,9 +72,15 @@
 
         include("conexao.php");
 
+
+        if (isset($_POST['id_para_deletar'])) {
+            $id = $_POST['id_para_deletar'];
+            $mysql->query("DELETE FROM reunioes WHERE id = $id");
+        }
+        
         
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['id_para_deletar'])) {
            
             $sala = $_POST['sala'];
             $participantes = $_POST['participantes'];
@@ -89,18 +95,29 @@
 
            
 
-            $sql = "INSERT INTO reunioes (
-                sala, participantes, nome, area, data_reuniao, hora_inicio, hora_fim, cafe, link, descricao
-            ) VALUES (
-                '$sala', '$participantes', '$name', '$area', '$data', '$horainicio', '$horafim', '$cafe', '$link', '$description'
-            )";
-    
-            if ($mysql->query($sql)) {
-                echo "Reunião registrada com sucesso!";
+            $verificar = "SELECT * FROM reunioes 
+            WHERE sala = '$sala' 
+            AND data_reuniao = '$data' 
+            AND ('$horainicio' < hora_fim AND '$horafim' > hora_inicio)";
+        
+            $verificacao = $mysql->query($verificar);
+            
+            if ($verificacao->num_rows > 0) {
+                echo "⚠️ Essa sala já está ocupada nesse horário!";
             } else {
-                echo "Erro: " . $mysql->error;
+                $sql = "INSERT INTO reunioes (
+                    sala, participantes, nome, area, data_reuniao, hora_inicio, hora_fim, cafe, link, descricao
+                ) VALUES (
+                    '$sala', '$participantes', '$name', '$area', '$data', '$horainicio', '$horafim', '$cafe', '$link', '$description'
+                )";
+            
+                if ($mysql->query($sql)) {
+                    echo "✅ Reunião registrada com sucesso!";
+                } else {
+                    echo "Erro: " . $mysql->error;
+                }
             }
-
+        
            
             
 
@@ -140,6 +157,13 @@
                     echo "<td>" . $row['cafe'] . "</td>";
                     echo "<td>" . $row['link'] . "</td>";
                     echo "<td>" . $row['descricao'] . "</td>";
+                    echo "<td>
+                            <form method='post'>
+                                <input type='hidden' name='id_para_deletar' value='" . $row['id'] . "'>
+                                <button type='submit'>🗑️</button>
+                            </form>
+                        </td>";
+
                     echo "</tr>";
                 }
 
@@ -147,12 +171,8 @@
                 echo "</table>";
 
                     
-
-                        if ($resultado->num_rows > 0) {
-                            echo "⚠️ Essa sala já está ocupada nesse horário!";
-                        } else {
-                            // pode fazer o INSERT aqui
-                        }
+              
+                       
 
 
 
